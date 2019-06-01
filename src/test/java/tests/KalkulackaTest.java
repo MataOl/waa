@@ -5,47 +5,52 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.GosslingatorPage;
+import pages.KalkulackaPage;
 
 import java.util.List;
 
 public class KalkulackaTest extends TestBase {
+    private KalkulackaPage kalkulackaPage;
+
 
     @Before
     public void openPage() {
         driver.get(BASE_URL + "kalkulacka.php");
+        kalkulackaPage = new KalkulackaPage(driver);
     }
 
     @Test
     public void itShoulSumTwoNumbers() {
-        enterFirstInput("4");
-        enterSecondInput("2");
+        kalkulackaPage.enterFirstInput("4");
+        kalkulackaPage.enterSecondInput("2");
 
-        sumNumbers();
+        kalkulackaPage.sumNumbers();
 
-        Assert.assertEquals("6", getResult());
+        Assert.assertEquals("6", kalkulackaPage.getResult());
     }
 
     @Test
     public void itShouldDeductTwoNumbers() {
 
-        enterFirstInput("4");
-        enterSecondInput("2");
+        kalkulackaPage.enterFirstInput("4");
+        kalkulackaPage.enterSecondInput("2");
 
-        deductNumbers();
+        kalkulackaPage.deductNumbers();
 
-        Assert.assertEquals("2", getResult());
+        Assert.assertEquals("2", kalkulackaPage.getResult());
 
     }
 
     @Test
     public void itShouldResetFields() {
-        enterFirstInput("4");
-        enterSecondInput("2");
+        kalkulackaPage.enterFirstInput("4");
+        kalkulackaPage.enterSecondInput("2");
 
-        deductNumbers();
-        resetCalculator();
+        kalkulackaPage.deductNumbers();
+        kalkulackaPage.resetCalculator();
 
         Assert.assertTrue(driver.findElement(By.cssSelector("[id = 'firstInput']")).getAttribute("value").isEmpty());
         Assert.assertTrue(driver.findElement(By.cssSelector("[id = 'secondInput']")).getAttribute("value").isEmpty());
@@ -53,44 +58,13 @@ public class KalkulackaTest extends TestBase {
 
     @Test
     public void itShouldDisplayLastCalculationsForSum() {
-        enterFirstInput("10");
-        enterSecondInput("8");
+        kalkulackaPage.enterFirstInput("10");
+        kalkulackaPage.enterSecondInput("8");
 
-        sumNumbers();
+        kalkulackaPage.sumNumbers();
 
-        Assert.assertEquals("10+8 = 18", getLatestCalculation().getText());
-        Assert.assertEquals(1, getLatestCalculations().size());
+        Assert.assertEquals("10+8 = 18", kalkulackaPage.getLatestCalculation().getText());
+        Assert.assertEquals(1, kalkulackaPage.getLatestCalculations().size());
     }
 
-    private void enterFirstInput(String textToInput){
-        driver.findElement(By.cssSelector("[id = 'firstInput']")).sendKeys(textToInput);
-    }
-
-    private void enterSecondInput(String textToInput){
-        driver.findElement(By.cssSelector("[id = 'secondInput']")).sendKeys(textToInput);
-    }
-
-    private void sumNumbers(){
-        driver.findElement(By.id("count")).click();
-    }
-
-    private void deductNumbers(){
-        driver.findElement(By.id("deduct")).click();
-    }
-
-    private void resetCalculator(){
-        driver.findElement(By.id("reset")).click();
-    }
-
-    private String getResult(){
-       return driver.findElement(By.id("result")).getText();
-    }
-
-    private WebElement getLatestCalculation(){
-        return driver.findElement(By.cssSelector("ul.latest-results li"));
-    }
-
-    private List<WebElement> getLatestCalculations(){
-        return driver.findElements(By.cssSelector("ul.latest-results li"));
-    }
 }
