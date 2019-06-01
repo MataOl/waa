@@ -3,38 +3,59 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
 public class KalkulackaPage {
+    @FindBy(id = "firstInput")
+    private WebElement firstInput;
+
+    @FindBy(id = "secondInput")
+    private WebElement secondInput;
+
+    @FindBy (id = "count")
+    private WebElement countButton;
+
+    @FindBy (id = "deduct")
+    private WebElement deductButton;
+
+    @FindBy (id = "reset")
+    private WebElement resetButton;
+
+    @FindBy (id = "result")
+    private WebElement result;
+
     private WebDriver pageDriver;
 
     public KalkulackaPage (WebDriver pageDriver){
         this.pageDriver = pageDriver;
+        PageFactory.initElements(pageDriver,this);
     }
 
     public void enterFirstInput(String textToInput){
-        pageDriver.findElement(By.cssSelector("[id = 'firstInput']")).sendKeys(textToInput);
+        firstInput.sendKeys(textToInput);
     }
 
     public void enterSecondInput(String textToInput){
-        pageDriver.findElement(By.cssSelector("[id = 'secondInput']")).sendKeys(textToInput);
+        secondInput.sendKeys(textToInput);
     }
 
     public void sumNumbers(){
-        pageDriver.findElement(By.id("count")).click();
+        countButton.click();
     }
 
     public void deductNumbers(){
-        pageDriver.findElement(By.id("deduct")).click();
+        deductButton.click();
     }
 
     public void resetCalculator(){
-        pageDriver.findElement(By.id("reset")).click();
+        resetButton.click();
     }
 
     public String getResult(){
-        return pageDriver.findElement(By.id("result")).getText();
+        return result.getText();
     }
 
     public WebElement getLatestCalculation(){
@@ -43,5 +64,13 @@ public class KalkulackaPage {
 
     public List<WebElement> getLatestCalculations(){
         return pageDriver.findElements(By.cssSelector("ul.latest-results li"));
+    }
+
+    public WebElement getFirstInput(){
+        return firstInput;
+    }
+
+    public WebElement getSecondInput(){
+        return secondInput;
     }
 }

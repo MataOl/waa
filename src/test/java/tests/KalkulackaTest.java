@@ -52,8 +52,8 @@ public class KalkulackaTest extends TestBase {
         kalkulackaPage.deductNumbers();
         kalkulackaPage.resetCalculator();
 
-        Assert.assertTrue(driver.findElement(By.cssSelector("[id = 'firstInput']")).getAttribute("value").isEmpty());
-        Assert.assertTrue(driver.findElement(By.cssSelector("[id = 'secondInput']")).getAttribute("value").isEmpty());
+        Assert.assertTrue(kalkulackaPage.getFirstInput().getAttribute("value").isEmpty());
+        Assert.assertTrue(kalkulackaPage.getSecondInput().getAttribute("value").isEmpty());
     }
 
     @Test
