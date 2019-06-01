@@ -16,8 +16,7 @@ public class NotePage {
     private WebElement author1;
 
     @FindBy(name = "message")
-    private
-    WebElement message1;
+    private WebElement message1;
 
     private WebDriver pageDriver;
 
