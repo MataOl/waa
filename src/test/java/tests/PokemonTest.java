@@ -1,5 +1,6 @@
 package tests;
 
+import base.TestBase;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -9,38 +10,31 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
+import pages.PokemonPage;
 
-public class PokemonTest {
-    WebDriver driver;
+public class PokemonTest extends TestBase {
+    PokemonPage pokPage;
 
-    //refaktoring kodu
     @Before
-    public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "chromedriver74.exe");
-        driver = new ChromeDriver();
-        driver.get("http://localhost/vybersi.php");
+    public void openPage() {
+        driver.get(BASE_URL + "vybersi.php");
+        pokPage = new PokemonPage(driver);
     }
 
-////    @After
-//    public void tearDown() {
-//        driver.close();
-//        driver.quit();
-//        System.out.println("s panom bohom idem od vas");
-//    }
-
     @Test
-    public void itshouldSelectPokemons(){
-        String [] selectedPokemons = {"Pikachu","Bulbasaur","Charmander","Diglett","Geodude"};
+    public void itshouldSelectPokemons() {
+        String[] selectedPokemons = {"Pikachu", "Bulbasaur", "Charmander", "Diglett", "Geodude"};
 //        najdem element select
-        WebElement pokemonSelect = driver.findElement(By.cssSelector("select"));
         for (String pokemon : selectedPokemons) {
 //            vyberiem pokemona
-            new Select(pokemonSelect).selectByVisibleText(pokemon);
+            pokPage.selectPokemon(pokemon);
 //            overim hlasku
-            String actualMessage = driver.findElement(By.cssSelector("div.pokemon h3")).getText();
-            String expectedMessage = "I choose you " + pokemon + " !";
-            String expectedMessageByFormat = String.format("I choose you %s !", pokemon);
-            Assert.assertEquals( expectedMessage, actualMessage);
+            Assert.assertEquals(getExpectedMessage(pokemon), pokPage.getActualMessage());
         }
+    }
+
+
+    private String getExpectedMessage(String pokemonName) {
+        return String.format("I choose you %s !", pokemonName);
     }
 }
