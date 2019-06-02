@@ -66,6 +66,7 @@ public class FellowshipTest extends TestBase {
     }
     @Test
 //    1. uloha z DU sposob aky ukazal Martin
+
     public void itShouldDisplayMessageComplete () {
         List<String> fellowsToSelect = new ArrayList<String>();
         fellowsToSelect.add("Gandalf");
