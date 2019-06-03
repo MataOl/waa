@@ -1,6 +1,8 @@
 package tests;
 
 import base.TestBase;
+import io.codearte.jfairy.Fairy;
+import io.codearte.jfairy.producer.person.Person;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,9 +30,10 @@ private SavingsPage savingsPage;
         for (String fundToSelect : fundsToSelect) {
             new Select(fundSelect).selectByVisibleText(fundToSelect);
         }
+
         String sum = "2000";
         String years = "5";
-        String email = "Maol@gmail.com";
+        String email = getUniqueEmail();
 
         savingsPage.enterNextData(sum,years,email);
 
@@ -44,9 +47,10 @@ private SavingsPage savingsPage;
         for (String fundToSelect : fundsToSelect) {
             new Select(fundSelect).selectByVisibleText(fundToSelect);
         }
+
         String sum = "2000";
         String years = "5";
-        String email = "Maol@gmail.com";
+        String email = getUniqueEmail();
 
         savingsPage.enterNextData(sum,years,email);
 
@@ -61,9 +65,10 @@ private SavingsPage savingsPage;
         for (String fundToSelect : fundsToSelect) {
             new Select(fundSelect).selectByVisibleText(fundToSelect);
         }
+
         String sum = "2000";
         String years = "5";
-        String email = "Maol@gmail.com";
+        String email = getUniqueEmail();
 
         savingsPage.enterNextData(sum,years,email);
 
@@ -77,9 +82,10 @@ private SavingsPage savingsPage;
         for (String fundToSelect : fundsToSelect) {
             new Select(fundSelect).selectByVisibleText(fundToSelect);
         }
+
         String sum = "2000";
         String years = "5";
-        String email = "Maol@gmail.com";
+        String email = getUniqueEmail();
 
         savingsPage.enterNextData(sum,years,email);
 
@@ -88,4 +94,11 @@ private SavingsPage savingsPage;
         Assert.assertTrue(savingsPage.getLastNote().isDisplayed());
         Assert.assertEquals("Death Star real estate", savingsPage.getLastNote().findElement(By.cssSelector("p.fund-description")).getText());
     }
+
+    private String getUniqueEmail(){
+        Fairy fairy = Fairy.create();
+        Person fakePerson = fairy.person();
+        return fakePerson.getEmail();
+    }
+
 }
