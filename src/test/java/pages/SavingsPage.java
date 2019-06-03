@@ -3,12 +3,30 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class SavingsPage {
+   @FindBy(xpath = "//button[contains(text(),'Apply for saving')]")
+   private WebElement savingsButton;
+
+   @FindBy(css = "ul.saving-list li:last-child")
+   private WebElement lastNote;
+
+   @FindBy(xpath = "//div/div[1]/p")
+   private WebElement firstSum;
+
+    @FindBy(xpath = "//div/div[2]/p")
+    private WebElement secondSum;
+
+    @FindBy(xpath = "//div/div[3]/p")
+    private WebElement fieldRisk;
+
     WebDriver pageDriver;
 
     public SavingsPage (WebDriver driver){
         this.pageDriver = driver;
+        PageFactory.initElements(pageDriver,this);
     }
 
     public void enterNextData(String sum, String years, String email){
@@ -18,22 +36,22 @@ public class SavingsPage {
     }
 
     public WebElement getSavingsButton (){
-        return pageDriver.findElement(By.xpath("//button[contains(text(),'Apply for saving')]"));
+        return savingsButton;
     }
 
     public WebElement getLastNote(){
-        return pageDriver.findElement(By.cssSelector("ul.saving-list li:last-child"));
+        return lastNote;
     }
 
     public String getFirstSum(){
-        return pageDriver.findElement(By.xpath("//div/div[1]/p")).getText();
+        return firstSum.getText();
     }
 
     public String getSecondSum(){
-        return pageDriver.findElement(By.xpath("//div/div[2]/p")).getText();
+        return secondSum.getText();
     }
 
     public String getTextOfRisk (){
-        return pageDriver.findElement(By.xpath("//div/div[3]/p")).getText();
+        return fieldRisk.getText();
     }
 }
