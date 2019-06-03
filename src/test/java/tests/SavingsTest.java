@@ -25,11 +25,13 @@ public class SavingsTest extends TestBase {
         for (String fundToSelect : fundsToSelect) {
             new Select(fundSelect).selectByVisibleText(fundToSelect);
         }
-        driver.findElement(By.id("oneTimeInvestmentInput")).sendKeys("2000");
-        driver.findElement(By.id("yearsInput")).sendKeys("5");
-        driver.findElement(By.id("emailInput")).sendKeys("Maol@gmail.com");
+        String sum = "2000";
+        String years = "5";
+        String email = "Maol@gmail.com";
 
-        Assert.assertTrue(driver.findElement(By.xpath("//button[contains(text(),'Apply for saving')]")).getAttribute("class").contains("btn-success"));
+        enterNextData(sum,years,email);
+
+        Assert.assertTrue(getSavingsButton().getAttribute("class").contains("btn-success"));
     }
 
     @Test
@@ -39,12 +41,14 @@ public class SavingsTest extends TestBase {
         for (String fundToSelect : fundsToSelect) {
             new Select(fundSelect).selectByVisibleText(fundToSelect);
         }
-        driver.findElement(By.id("oneTimeInvestmentInput")).sendKeys("2000");
-        driver.findElement(By.id("yearsInput")).sendKeys("5");
-        driver.findElement(By.id("emailInput")).sendKeys("Maol@gmail.com");
+        String sum = "2000";
+        String years = "5";
+        String email = "Maol@gmail.com";
 
-        Assert.assertFalse(driver.findElement(By.xpath("//div/div[1]/p")).getText().isEmpty());
-        Assert.assertFalse(driver.findElement(By.xpath("//div/div[2]/p")).getText().isEmpty());
+        enterNextData(sum,years,email);
+
+        Assert.assertFalse(getFirstSum().isEmpty());
+        Assert.assertFalse(getSecondSum().isEmpty());
     }
 
     @Test
@@ -54,11 +58,13 @@ public class SavingsTest extends TestBase {
         for (String fundToSelect : fundsToSelect) {
             new Select(fundSelect).selectByVisibleText(fundToSelect);
         }
-        driver.findElement(By.id("oneTimeInvestmentInput")).sendKeys("2000");
-        driver.findElement(By.id("yearsInput")).sendKeys("5");
-        driver.findElement(By.id("emailInput")).sendKeys("Maol@gmail.com");
+        String sum = "2000";
+        String years = "5";
+        String email = "Maol@gmail.com";
 
-        Assert.assertFalse(driver.findElement(By.xpath("//div/div[3]/p")).getText().isEmpty());
+        enterNextData(sum,years,email);
+
+        Assert.assertFalse(getTextOfRisk().isEmpty());
     }
 
     @Test
@@ -68,13 +74,45 @@ public class SavingsTest extends TestBase {
         for (String fundToSelect : fundsToSelect) {
             new Select(fundSelect).selectByVisibleText(fundToSelect);
         }
-        driver.findElement(By.id("oneTimeInvestmentInput")).sendKeys("2000");
-        driver.findElement(By.id("yearsInput")).sendKeys("5");
-        driver.findElement(By.id("emailInput")).sendKeys("Maol@gmail.com");
+        String sum = "2000";
+        String years = "5";
+        String email = "Maol@gmail.com";
 
-        driver.findElement(By.xpath("//div/button[contains(text(),'Apply for saving')]")).click();
-        WebElement lastNote = driver.findElement(By.cssSelector("ul.saving-list li:last-child"));
-        Assert.assertTrue(lastNote.isDisplayed());
-        Assert.assertEquals("Death Star real estate", lastNote.findElement(By.cssSelector("p.fund-description")).getText());
+        enterNextData(sum,years,email);
+
+        getSavingsButton().click();
+
+        Assert.assertTrue(getLastNote().isDisplayed());
+        Assert.assertEquals("Death Star real estate", getLastNote().findElement(By.cssSelector("p.fund-description")).getText());
+    }
+
+
+
+
+
+    private void enterNextData(String sum, String years, String email){
+        driver.findElement(By.id("oneTimeInvestmentInput")).sendKeys(sum);
+        driver.findElement(By.id("yearsInput")).sendKeys(years);
+        driver.findElement(By.id("emailInput")).sendKeys(email);
+    }
+
+    private WebElement getSavingsButton (){
+        return driver.findElement(By.xpath("//button[contains(text(),'Apply for saving')]"));
+    }
+
+    private WebElement getLastNote(){
+        return driver.findElement(By.cssSelector("ul.saving-list li:last-child"));
+    }
+
+    private String getFirstSum(){
+        return driver.findElement(By.xpath("//div/div[1]/p")).getText();
+    }
+
+    private String getSecondSum(){
+        return driver.findElement(By.xpath("//div/div[2]/p")).getText();
+    }
+
+    private String getTextOfRisk (){
+        return driver.findElement(By.xpath("//div/div[3]/p")).getText();
     }
 }
