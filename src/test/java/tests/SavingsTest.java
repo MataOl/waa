@@ -8,14 +8,17 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import pages.PokemonPage;
+import pages.SavingsPage;
 
 import java.awt.*;
 
 public class SavingsTest extends TestBase {
+private SavingsPage savingsPage;
 
     @Before
     public void openPage() {
         driver.get(BASE_URL + "savingscalculator.php");
+        savingsPage = new SavingsPage(driver);
     }
 
     @Test
@@ -29,9 +32,9 @@ public class SavingsTest extends TestBase {
         String years = "5";
         String email = "Maol@gmail.com";
 
-        enterNextData(sum,years,email);
+        savingsPage.enterNextData(sum,years,email);
 
-        Assert.assertTrue(getSavingsButton().getAttribute("class").contains("btn-success"));
+        Assert.assertTrue(savingsPage.getSavingsButton().getAttribute("class").contains("btn-success"));
     }
 
     @Test
@@ -45,10 +48,10 @@ public class SavingsTest extends TestBase {
         String years = "5";
         String email = "Maol@gmail.com";
 
-        enterNextData(sum,years,email);
+        savingsPage.enterNextData(sum,years,email);
 
-        Assert.assertFalse(getFirstSum().isEmpty());
-        Assert.assertFalse(getSecondSum().isEmpty());
+        Assert.assertFalse(savingsPage.getFirstSum().isEmpty());
+        Assert.assertFalse(savingsPage.getSecondSum().isEmpty());
     }
 
     @Test
@@ -62,9 +65,9 @@ public class SavingsTest extends TestBase {
         String years = "5";
         String email = "Maol@gmail.com";
 
-        enterNextData(sum,years,email);
+        savingsPage.enterNextData(sum,years,email);
 
-        Assert.assertFalse(getTextOfRisk().isEmpty());
+        Assert.assertFalse(savingsPage.getTextOfRisk().isEmpty());
     }
 
     @Test
@@ -78,41 +81,11 @@ public class SavingsTest extends TestBase {
         String years = "5";
         String email = "Maol@gmail.com";
 
-        enterNextData(sum,years,email);
+        savingsPage.enterNextData(sum,years,email);
 
-        getSavingsButton().click();
+        savingsPage.getSavingsButton().click();
 
-        Assert.assertTrue(getLastNote().isDisplayed());
-        Assert.assertEquals("Death Star real estate", getLastNote().findElement(By.cssSelector("p.fund-description")).getText());
-    }
-
-
-
-
-
-    private void enterNextData(String sum, String years, String email){
-        driver.findElement(By.id("oneTimeInvestmentInput")).sendKeys(sum);
-        driver.findElement(By.id("yearsInput")).sendKeys(years);
-        driver.findElement(By.id("emailInput")).sendKeys(email);
-    }
-
-    private WebElement getSavingsButton (){
-        return driver.findElement(By.xpath("//button[contains(text(),'Apply for saving')]"));
-    }
-
-    private WebElement getLastNote(){
-        return driver.findElement(By.cssSelector("ul.saving-list li:last-child"));
-    }
-
-    private String getFirstSum(){
-        return driver.findElement(By.xpath("//div/div[1]/p")).getText();
-    }
-
-    private String getSecondSum(){
-        return driver.findElement(By.xpath("//div/div[2]/p")).getText();
-    }
-
-    private String getTextOfRisk (){
-        return driver.findElement(By.xpath("//div/div[3]/p")).getText();
+        Assert.assertTrue(savingsPage.getLastNote().isDisplayed());
+        Assert.assertEquals("Death Star real estate", savingsPage.getLastNote().findElement(By.cssSelector("p.fund-description")).getText());
     }
 }
