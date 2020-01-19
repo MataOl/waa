@@ -25,7 +25,7 @@ This is my code related to Test Automation Course with Java, Selenium and JUnit.
      - usage of jFairy library
      - structure and readability of commits
      
-#### Preview of the tested app:  
+#### Tested app after entering data (fund, sum, years, email):  
 
 <img src="images/Savings-1.PNG" width="700">  
 
