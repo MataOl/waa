@@ -1,6 +1,6 @@
 # Test Automation Course
 
-This is an output from the Test Automation Course I have taken. We used Java, Selenium and JUnit.  
+This is my code related to Test Automation Course with Java, Selenium and JUnit.  
 **Commits from 3 June 2019** represent my **Final Examination** (duration: 3 hours). The **tasks** in the examination were:  
 
 1. Download page <https://github.com/skarbala/ta-mentor-program-playground> and launch it using MAMP.
@@ -24,3 +24,5 @@ This is an output from the Test Automation Course I have taken. We used Java, Se
      - readability of code, meeting conventions
      - usage of jFairy library
      - structure and readability of commits
+     
+<img src="images/Savings-1">
