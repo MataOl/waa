@@ -21,6 +21,6 @@ This is an output from the Test Automatization Course I have taken. We used Java
      - re-usage of code, elimination of duplicates with help of methods and variables
      - placing methods in individual Page class
      - FindBy anotations within the Page class
-     - purity and readability of code, meeting conventions
+     - readability of code, meeting conventions
      - usage of jFairy library
      - structure and readability of commits
