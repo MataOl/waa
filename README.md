@@ -14,4 +14,6 @@ Commits dated 3 June 2019 represent my **Final Examination** (duration: 3 hours)
      
      c) Enter all data (fond, sum, email, years), check that the risk is not empty.
      
-     d) Enter all data (fond, sum, email, years), click the "Apply for saving" button, check that new note is displayed in "recent    requests", check that the new note contains the name of the chosen fund.
+     d) Enter all data (fond, sum, email, years), click the "Apply for saving" button, check that new note is displayed in "Recent    requests", check that the new note contains the name of the chosen fund.
+     
+5. Commit and push your code to GitHub. Final score for the examination will take regard of: 
