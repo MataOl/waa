@@ -6,7 +6,7 @@ This is my code related to Test Automation Course with Java, Selenium and JUnit.
 1. Download page <https://github.com/skarbala/ta-mentor-program-playground> and launch it using MAMP.
 2. You will test the page **Savings Calculator**.
 3. For testing, use the same project we used throughout the whole course.
-4. **Automate** following scenarios, use your own names for methods:
+4. **Automate** following scenarios:
 
      a) Enter all data (fund, sum, email, years), check that the "Apply for saving" button is enabled.
      
