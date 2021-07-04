@@ -1,11 +1,11 @@
 ## Test Automation Course
 
-This is my code related to Test Automation Course with Java, Selenium and JUnit.  
-**Commits from 3 June 2019** represent my **Final Examination** (duration: 3 hours). The **tasks** in the examination were:  
+This is code related to Test Automation Course using Java, Selenium and JUnit.  
+**Commits from 3 June 2019** represent my **Final Examination**. The **tasks** were:  
 
-1. Download page <https://github.com/skarbala/ta-mentor-program-playground> and launch it using MAMP.
+1. Download page <https://github.com/skarbala/ta-mentor-program-playground>, launch it using MAMP.
 2. You will test the page **Savings Calculator**.
-3. For testing, use the same project we used throughout the whole course.
+3. For testing, use the same project we used throughout the course.
 4. **Automate** following scenarios:
 
      a) Enter all data (fund, sum, email, years), check that the "Apply for saving" button is enabled.
@@ -25,10 +25,10 @@ This is my code related to Test Automation Course with Java, Selenium and JUnit.
      - usage of jFairy library
      - structure and readability of commits
      
-#### Tested app after entering data (fund, sum, years, email):  
+#### Tested app - after entering data (fund, sum, years, email):  
 
 <img src="images/Savings-1.PNG" width="700">  
 
-#### After clicking "Apply for saving" button:  
+#### Tested app - after clicking "Apply for saving" button:  
 
 <img src="images/Savings-2.PNG" width="700">
